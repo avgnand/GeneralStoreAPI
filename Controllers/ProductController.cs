@@ -22,7 +22,7 @@ namespace GeneralStoreAPI.Controllers
             Product product = new Product() {
                 Name = newProduct.Name,
                 Price = newProduct.Price,
-                QuantityInStock = newProduct.Quantity,
+                QuantityInStock = newProduct.QuantityInStock,
             };
 
             _db.Products.Add(product);

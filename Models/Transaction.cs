@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace GeneralStoreAPI.Models
 {
     public partial class Transaction
