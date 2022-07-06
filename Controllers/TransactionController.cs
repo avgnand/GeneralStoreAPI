@@ -36,5 +36,37 @@ namespace GeneralStoreAPI.Controllers
             var transactions = await _db.Transactions.ToListAsync();
             return Ok(transactions);
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateTransaction([FromForm] TransactionEdit model, [FromRoute] int id) {
+            var transaction = await _db.Transactions.FindAsync(id);
+            if (transaction == null) {
+                return NotFound();
+            }
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+            if (model.ProductId != default) {
+                transaction.ProductId = model.ProductId;
+            }
+            if (model.CustomerId != default) {
+                transaction.CustomerId = model.CustomerId;
+            }
+            await _db.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteTransaction([FromRoute] int id) {
+            var transaction = await _db.Transactions.FindAsync(id);
+            if (transaction == null) {
+                return NotFound();
+            }
+            _db.Transactions.Remove(transaction);
+            await _db.SaveChangesAsync();
+            return Ok();
+        }
     }
 }
