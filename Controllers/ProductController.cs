@@ -15,7 +15,10 @@ namespace GeneralStoreAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductEdit newProduct) {
+        public async Task<IActionResult> CreateProduct([FromForm]ProductEdit newProduct) {
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
             Product product = new Product() {
                 Name = newProduct.Name,
                 Price = newProduct.Price,

@@ -16,6 +16,9 @@ namespace GeneralStoreAPI.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateCustomer(CustomerEdit newCustomer) {
+            if(!ModelState.IsValid){
+                return BadRequest(ModelState);
+            }
             Customer customer = new Customer() {
                 Name = newCustomer.Name,
                 Email = newCustomer.Email,
