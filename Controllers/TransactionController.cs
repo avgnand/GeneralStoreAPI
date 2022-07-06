@@ -23,6 +23,7 @@ namespace GeneralStoreAPI.Controllers
                 ProductId = newTransaction.ProductId,
                 CustomerId = newTransaction.CustomerId,
                 Quantity = newTransaction.Quantity,
+                DateOfTransaction = DateTime.Now,
             };
 
             _db.Transactions.Add(transaction);
